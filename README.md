@@ -1,6 +1,18 @@
 # nasa-flight-calculator
 
+## Usage
 
+* `git clone git@github.com:kyryloliinyk/nasa-flight-calculator.git`
+
+* `cd nasa-flight-calculator`
+
+* `bundle install`
+
+* `chmod +x bin/calculate_fuel`
+
+ * `bin/calculate_fuel 28801 "launch:earth,land:moon,launch:moon,land:earth"`
+
+## Task
 Congratulations! You have received a contract from NASA for a software application that will help to calculate the fuel required for the flight. This application aims to calculate fuel to launch from one planet of the solar system and land on another planet of the solar system, depending on the flight route.
 
 The formula to calculate fuel is quite simple, but it depends on the planet's gravity. Planets NASA is interested in are:
