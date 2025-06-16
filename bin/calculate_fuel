@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative '../lib/fuel_calculator'
+
+# rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+def parse_args(argv)
+  if argv.size != 2
+    puts 'Usage: bin/fuel <mass> "launch:earth,land:moon,..."'
+    exit(1)
+  end
+
+  mass = argv[0].to_i
+  steps_input = argv[1]
+
+  unless mass.positive?
+    puts 'Error: Mass must be a positive integer'
+    exit(1)
+  end
+
+  flight_steps = steps_input.split(',').map do |input|
+    action, planet = input.strip.downcase.split(':')
+    unless %w[launch land].include?(action) && !planet.nil?
+      puts "Error: Invalid step format: '#{input}'"
+      exit(1)
+    end
+    [action.to_sym, planet]
+  end
+
+  [mass, flight_steps]
+end
+# rubocop:enable Metrics/MethodLength, Metrics/AbcSize
+
+mass, flight_steps = parse_args(ARGV)
+
+begin
+  fuel = FuelCalculator.calculate_total_fuel(mass, flight_steps)
+  puts "Total required fuel: #{fuel} kg"
+rescue StandardError => e
+  puts "Calculation error: #{e.message}"
+  exit(1)
+end
