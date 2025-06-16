@@ -3,9 +3,9 @@
 # Responsible for  fuel calcaulation business logic
 module FuelCalculator
   GRAVITIES = {
-    'earth' => 9.807,
-    'moon' => 1.62,
-    'mars' => 3.711
+    earth: 9.807,
+    moon: 1.62,
+    mars: 3.711
   }.freeze
 
   def self.fuel_required(mass, gravity, type)
@@ -21,7 +21,7 @@ module FuelCalculator
   def self.calculate_total_fuel(mass, steps)
     total = 0
     steps.reverse_each do |action, planet|
-      gravity = GRAVITIES[planet.downcase]
+      gravity = GRAVITIES[planet.downcase.to_sym]
       raise "Unknown gravity for planet: #{planet}" unless gravity
 
       total_fuel = fuel_required(mass + total, gravity, action.to_sym)

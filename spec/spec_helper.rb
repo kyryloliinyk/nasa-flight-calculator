@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'rspec'
-require_relative '../lib/fuel_calculator'
-Dir['../lib/**/*.rb'].each { |f| require f }
+
+Dir[File.expand_path('../lib/**/*.rb', __dir__)].each { |file| require file }
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
