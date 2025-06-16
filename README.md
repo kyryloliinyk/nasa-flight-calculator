@@ -3,13 +3,10 @@
 ## Usage
 
 * `git clone git@github.com:kyryloliinyk/nasa-flight-calculator.git`
-
 * `cd nasa-flight-calculator`
-
 * `bundle install`
-
 * `chmod +x bin/calculate_fuel`
-
+* `rspec`
  * `bin/calculate_fuel 28801 "launch:earth,land:moon,launch:moon,land:earth"`
 
 ## Task
